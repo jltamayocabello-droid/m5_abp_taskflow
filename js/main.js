@@ -38,10 +38,65 @@ formulario.addEventListener("submit", (event) => {
   // Crear tarea usando GESTOR
   const nuevaTarea = gestor.agregarTarea(titulo, descripcion);
 
+  //Pintar datos
+  renderizarTareas();
+
   // Depuración (Verificamos en consola que se creó)
   console.log("Tarea creada:", nuevaTarea);
-  console.log("Lista actual:", gestor.tareas);
 
   // Limpiamos el formulario
   formulario.reset();
 });
+
+//==========================================
+// FUNCIÓN DE RENDERIZADO
+//==========================================
+
+function renderizarTareas() {
+  // Limpiamos la lista de tareas
+  listaTareas.innerHTML = "";
+
+  // Recorremos las tareas
+  gestor.tareas.forEach((tarea) => {
+
+    // Creamos el contenedor de la tarjeta (<li>)
+    const item = document.createElement("li");
+    item.id = tarea.id; //Guardamos el ID para usarlo luego (borrar/editar)
+
+    //Si la tarea está completada, le añadimos una clase virtual (CSS)
+    if (tarea.estado === 'completada') item.classList.add('completada');
+
+    // Creamos el contenido
+    //Título
+    const titulo = document.createElement("h3");
+    titulo.textContent = tarea.titulo;
+
+    //Descripción
+    const descripcion = document.createElement("p");
+    descripcion.textContent = tarea.descripcion;
+
+    //Boton de Estado (Check)
+    const btnEstado = document.createElement("button");
+    btnEstado.className = "btn-estado";
+    btnEstado.textContent = tarea.estado === "pendiente" ? "✅" : "↺";
+
+    //Botón de Eliminar
+    const btnEliminar = document.createElement("button");
+    btnEliminar.className = "btn-eliminar";
+    btnEliminar.textContent = "🗑️";
+
+    //Armamos la tarjeta
+    item.appendChild(titulo);
+    item.appendChild(descripcion);
+    //Creamos un div para los botones   
+    const acciones = document.createElement("div");
+    acciones.appendChild(btnEstado);
+    acciones.appendChild(btnEliminar);
+    item.appendChild(acciones);
+
+    //Agregamos la tarjeta a la lista principal
+    listaTareas.appendChild(item);
+  
+
+});
+}
