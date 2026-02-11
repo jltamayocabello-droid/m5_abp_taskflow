@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Final M5: TaslFlow - Gestión de Tareas</title>
+    <title>Proyecto Final M5: TaskFlow - Gestión de Tareas</title>
 
     <script type="module" src="./js/main.js"></script>
+    <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 
 <body>
@@ -15,6 +16,25 @@
     </header>
 
     <main id="app">
+        
+        <section class="crear-tarea">
+            <h2>Nueva Tarea</h2>
+            <form id="form-tarea">
+                <input type="text" id="input-titulo" placeholder="Título de la tarea" required>
+                <input type="text" id="input-descripcion" placeholder="Descripción (opcional)">
+                <button type="submit">Agregar Nueva Tarea</button>
+            </form>
+        </section>
+
+        <section class="lista-tareas">
+            <h2>Mis Tareas</h2>
+            <ul id="lista-tareas">
+            </ul>
+        </section>
+
+
+
+
     </main>
 
   
