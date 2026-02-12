@@ -52,3 +52,35 @@ export class GestorTareas {
     }
 
 }
+
+// Método para simular una carga de datos externa
+
+cargarTareasFalsas() {
+    //Retornamos una nueva promesa 
+    
+    return new Promise((resolve, reject) => {
+        console.log("Cargando tareas falsas");
+
+        //Usamos setTimeour para simular el retraso de 2 segundos
+        setTimeout(() => {
+             
+        //Simulamos que todo salio bien
+        const exito = true;
+
+        if (exito) {
+            // Datos ficticios que llegaron del servidor
+            const tareasSimuladas = [
+                {id: 1, titulo: "Tarea Servidor 1", descripcion: "Descripción Servidor 1", estado: "pendiente"},
+                {id: 2, titulo: "Tarea Servidor 2", descripcion: "Descripción Servidor 2", estado: "completada"},
+            ];
+
+            // Resolvemos la promesa entregando los datos
+            resolve(tareasSimuladas);
+        } else {
+            // Resolvemos la promesa con un error
+            reject("Hubo un error al cargar las tareas");
+        }
+        }, 2000); // 2 segundos);
+    });
+
+}
