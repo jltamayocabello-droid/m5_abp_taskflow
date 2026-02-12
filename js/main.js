@@ -124,3 +124,30 @@ listaTareas.addEventListener("click", (event) => {
     renderizarTareas();
   }
 })
+
+
+//==========================================
+// FUNCIÓN ASÍNCRONICA PARA MANEJAR CARGA INICIAL
+//==========================================
+
+async function iniciarApp() {
+  try {
+    // Esperamos a que el gestor termine de cargar las tareas falsas
+    // Mientras esto ocurre, el navegador NO se congela
+    const tareasNuevas = await gestor.cargarTareasFalsas();
+    console.log("Tareas cargadas:", tareasNuevas);
+
+
+    // Agregar estas tareas al gestor real y pintar
+    tareasNuevas.forEach(tarea => gestor.agregarTarea(tarea.titulo, tarea.descripcion));
+    renderizarTareas();
+
+  } catch (error) {
+    console.error("Algo salió mal:", error);
+    alert("Error cargando tareas iniciales")
+  }
+
+}
+
+// Llamamos a la función asíncronica
+iniciarApp();
