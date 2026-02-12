@@ -1,4 +1,3 @@
-
 import { Tarea } from "./Tarea.js";
 
 export class GestorTareas {
@@ -28,4 +27,5 @@ export class GestorTareas {
         const tarea = this.tareas.find(tarea => tarea.id === Id);
         tarea.cambiarEstado();  
     }
+
 }
