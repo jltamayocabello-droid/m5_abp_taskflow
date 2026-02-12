@@ -19,13 +19,17 @@ export class GestorTareas {
 
     // Método para eliminar una tarea
     eliminarTarea(Id){
+        // Sobreescribimos el array filtrando todos los que No tengan ese ID
         this.tareas = this.tareas.filter(tarea => tarea.id !== Id);
     }
 
     // Método para alternar el estado de una tarea
     alternarTarea(Id) {
+        // Buscamos la tarea especifica
         const tarea = this.tareas.find(tarea => tarea.id === Id);
-        tarea.cambiarEstado();  
+        if (tarea) {
+            tarea.cambiarEstado();
+        } 
     }
 
 }
